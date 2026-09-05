@@ -1,7 +1,7 @@
 package ru.aston.notificationservice.kafka;
 
-import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
+import org.springframework.boot.kafka.autoconfigure.KafkaProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
@@ -17,14 +17,10 @@ import java.util.Map;
 public class KafkaConsumerConfig {
 
     @Bean
-    public ConsumerFactory<String, UserEvent> consumerFactory() {
-        Map<String, Object> props = new HashMap<>();
+    public ConsumerFactory<String, UserEvent> consumerFactory(
+            KafkaProperties kafkaProperties) {
+        Map<String, Object> props = new HashMap<>(kafkaProperties.buildConsumerProperties());
 
-        props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
-
-        props.put(ConsumerConfig.GROUP_ID_CONFIG, "notification-service-group");
-
-        props.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
 
         JacksonJsonDeserializer<UserEvent> valueDeserializer =
                 new JacksonJsonDeserializer<>(UserEvent.class)

@@ -23,7 +23,7 @@ public class NotificationImpl implements NotificationService {
 
         message.setTo(email);
 
-        message.setSubject("Notification from User Service");
+        message.setSubject("Создание аккаунта");
 
         message.setText(text);
 
