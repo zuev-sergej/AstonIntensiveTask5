@@ -117,8 +117,6 @@ class UserEventConsumerIntegrationTest {
 
         assertEquals(1, messages.length);
 
-        var massege = messages[0];
-
         assertEquals("test@mail.ru", messages[0].getAllRecipients()[0].toString());
     }
 
