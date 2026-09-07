@@ -103,7 +103,7 @@ class UserEventConsumerIntegrationTest {
                 {
                     "id": 1,
                     "email": "test@mail.ru",
-                    "operation": "CREATED"
+                    "operation": "DELETED"
                 }
                 """;
 
@@ -116,6 +116,8 @@ class UserEventConsumerIntegrationTest {
         var messages = greenMail.getReceivedMessages();
 
         assertEquals(1, messages.length);
+
+        var massege = messages[0];
 
         assertEquals("test@mail.ru", messages[0].getAllRecipients()[0].toString());
     }
