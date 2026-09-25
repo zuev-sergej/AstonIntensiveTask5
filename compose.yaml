@@ -1,0 +1,17 @@
+services:
+
+  notification-service:
+    build:
+      context: .
+    container_name: notification-service
+
+    ports:
+      - "8081:8081"
+
+    networks:
+      - microservices-network
+
+
+networks:
+  microservices-network:
+    external: true
