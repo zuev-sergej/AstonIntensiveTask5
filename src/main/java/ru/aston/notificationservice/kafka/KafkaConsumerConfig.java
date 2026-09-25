@@ -24,7 +24,7 @@ public class KafkaConsumerConfig {
 
         JacksonJsonDeserializer<UserEvent> valueDeserializer =
                 new JacksonJsonDeserializer<>(UserEvent.class)
-                        .trustedPackages("*")
+                        .trustedPackages("ru.aston.notificationservice.kafka")
                         .ignoreTypeHeaders();
 
         return new DefaultKafkaConsumerFactory<>(
